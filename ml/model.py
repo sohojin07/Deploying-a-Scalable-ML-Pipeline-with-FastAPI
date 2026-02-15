@@ -1,7 +1,6 @@
 import pickle
 from sklearn.metrics import fbeta_score, precision_score, recall_score, f1_score, accuracy_score
 from ml.data import process_data
-from ml.model_metrics import compute_model_metrics
 from sklearn.ensemble import RandomForestClassifier
 import joblib
 import os
