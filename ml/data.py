@@ -2,6 +2,14 @@ import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 
 
+def apply_label(inference):
+    """Convert a binary prediction to string output."""
+    if inference[0] == 1:
+        return ">50K"
+    elif inference[0] == 0:
+        return "<=50K"
+
+
 def process_data(
     X,
     categorical_features=[],
