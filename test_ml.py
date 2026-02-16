@@ -1,10 +1,7 @@
-import pytest
 import numpy as np
-import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
 from ml.model import train_model, compute_model_metrics, inference
-from ml.data import process_data
 
 
 def test_train_model():
@@ -12,9 +9,9 @@ def test_train_model():
     # Confirms model trains and correct algorithm is used
     """
     X = np.random.rand(50, 5)
-    y = np.random.randint(0,2,50)
+    y = np.random.randint(0, 2, 50)
 
-    model = train_model(X,y)
+    model = train_model(X, y)
 
     assert isinstance(model, RandomForestClassifier)
 
@@ -24,9 +21,9 @@ def test_inference():
     # Confirms predictions exist and match dataset length
     """
     X = np.random.rand(50, 5)
-    y = np.random.randint(0,2,50)
+    y = np.random.randint(0, 2, 50)
 
-    model = train_model(X,y)
+    model = train_model(X, y)
     preds = inference(model, X)
 
     assert isinstance(preds, np.ndarray)

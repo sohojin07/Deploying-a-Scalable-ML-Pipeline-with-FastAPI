@@ -22,8 +22,7 @@ data_path = os.path.join(project_path, "data", "census.csv")
 print(data_path)
 data = pd.read_csv(data_path)
 
-# split the provided data to have a train dataset and a test dataset
-# Optional enhancement, use K-fold cross validation instead of a train-test split.
+# split the provided data to have a train and a test dataset
 train, test = train_test_split(data, test_size=0.20, random_state=42)
 
 # DO NOT MODIFY
@@ -67,7 +66,7 @@ save_model(encoder, encoder_path)
 # load the model
 model = load_model(
     model_path
-) 
+)
 
 # use the inference function to run the model inferences on the test dataset.
 preds = inference(model, X_test)
@@ -76,7 +75,8 @@ preds = inference(model, X_test)
 p, r, fb = compute_model_metrics(y_test, preds)
 print(f"Precision: {p:.4f} | Recall: {r:.4f} | F1: {fb:.4f}")
 
-# compute the performance on model slices using the performance_on_categorical_slice function
+# compute the performance on model slices using
+# the performance_on_categorical_slice function
 # iterate through the categorical features
 for col in cat_features:
     # iterate through the unique values in one categorical feature
@@ -93,5 +93,11 @@ for col in cat_features:
             model=model
         )
         with open("slice_output.txt", "a") as f:
-            print(f"{col}: {slicevalue}, Count: {count:,}", file=f)
-            print(f"Precision: {p:.4f} | Recall: {r:.4f} | F1: {fb:.4f}", file=f)
+            print(
+                f"{col}: {slicevalue}, Count: {count:,}",
+                file=f
+            )
+            print(
+                f"Precision: {p:.4f} | Recall: {r:.4f} | F1: {fb:.4f}",
+                file=f
+            )
